@@ -26,7 +26,7 @@ curl -X GET -i http://localhost:8081/api/livres
 
 Add a new Book :
 
-curl -X POST -H 'Content-Type: application/json' -i http://localhost:8081/api/livre --data '{"libelle":"Livre de Armel", "auteur": "armel", "idCategorie":1, "rent":false}'
+curl -X POST -H 'Content-Type: application/json' -i http://localhost:8081/api/livre --data '{"libelle":"Livre de Armel", "auteur": "armel", "idCategorie":1}'
 
 Get a book 
 
