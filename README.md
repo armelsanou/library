@@ -9,20 +9,25 @@ Under Eclipse : File -> Import -> Gradle ...
 
 Under Intellij : open
 
-Launching
-Launch the main program: https://github.com/charroux/CarService/blob/master/src/main/java/com/example/CarRental/CarRentalApplication.java
+After opening, you can change the port into file application.properties
 
-Open a web browser to test the http get request: http://localhost:8080/cars
+Launching
+Launch the main program: https://github.com/armelsanou/library/blob/main/src/main/java/com/library/LibraryApplication.java
+
+Open a web browser to test the http get request: http://localhost:8081/cars
 
 The Web Service
-https://github.com/charroux/CarService/blob/master/src/main/java/com/example/CarRental/CarRentalService.java
+https://github.com/armelsanou/library/blob/main/src/main/java/com/library/controllers/
 
 Test with curl
 Get a the list of books :
 
-curl -X GET -i http://localhost:8080/api/livres
+curl -X GET -i http://localhost:8081/api/livres
 
 Add a new Book :
 
-curl -X POST -H 'Content-Type: application/json' -i http://localhost:8080/api/livre --data '{"libelle":"Livre de Armel", "auteur": "armel", "idCategorie":1, "rent":false}'
+curl -X POST -H 'Content-Type: application/json' -i http://localhost:8081/api/livre --data '{"libelle":"Livre de Armel", "auteur": "armel", "idCategorie":1, "rent":false}'
 
+Get a book 
+
+http://localhost:8081/api/livre/1
