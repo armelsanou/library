@@ -14,7 +14,11 @@ After opening, you can change the port into file application.properties
 Launching
 Launch the main program: https://github.com/armelsanou/library/blob/main/src/main/java/com/library/LibraryApplication.java
 
-Open a web browser to test the http get request: http://localhost:8081/cars
+To get uploaded a file into server: http://localhost:8081/downloadFile/fileName.extension
+
+To get upload a file into server: http://localhost:8081/uploadFile/ then add requestParam named file
+
+Uploaded files are saved into directory: https://github.com/armelsanou/library/tree/main/src/main/resources/uploaded-images
 
 The Web Service
 https://github.com/armelsanou/library/blob/main/src/main/java/com/library/controllers/
@@ -26,7 +30,7 @@ curl -X GET -i http://localhost:8081/api/livres
 
 Add a new Book :
 
-curl -X POST -H 'Content-Type: application/json' -i http://localhost:8081/api/livre --data '{"libelle":"Livre de Armel", "auteur": "armel", "idCategorie":1}'
+curl -X POST -H 'Content-Type: application/json' -i http://localhost:8081/api/livre --data '{"titre":"Livre de Armel", "auteur": "armel", "idCategorie":1}'
 
 Get a book 
 
