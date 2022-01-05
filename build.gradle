@@ -20,6 +20,7 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-web-services'
 	implementation 'org.springframework.boot:spring-boot-starter-validation'
 	implementation group: 'mysql', name: 'mysql-connector-java', version: '5.1.13'
+	implementation group: 'commons-fileupload', name: 'commons-fileupload', version: '1.4'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	implementation group: 'javax.validation', name: 'validation-api', version: '2.0.1.Final'
 	implementation group: 'org.springframework.boot', name: 'spring-boot-starter-tomcat', version: '1.2.1.RELEASE'
