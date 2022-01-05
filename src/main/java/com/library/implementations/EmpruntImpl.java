@@ -1,5 +1,6 @@
 package com.library.implementations;
 
+import com.library.entities.Effectuerabonnement;
 import com.library.entities.Emprunt;
 import com.library.entities.EmpruntPK;
 import com.library.entities.Rayon;
@@ -9,6 +10,7 @@ import com.library.repositories.EmpruntRepository;
 import com.library.repositories.EtatlivreRepository;
 import com.library.repositories.RayonRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import javax.persistence.EntityManager;
@@ -32,6 +34,9 @@ public class EmpruntImpl implements IEmprunt {
     @Autowired
     EmpruntRepository empruntRepository;
 
+    @Autowired
+    EffectuerAbonnementImpl effectuerAbonnement;
+
     @Override
     public void create(Emprunt emprunt) {
 
@@ -50,211 +55,38 @@ public class EmpruntImpl implements IEmprunt {
     }
 
     @Override
-    public void emprunterLivre(int isbn, int idLecteur) {
+    public ResponseEntity<String> emprunterLivre(int isbn, int idLecteur) {
 
-        //emprunter un livre revient tout simplement à creer un objet emprunt
-        //EmpruntPK k = new EmpruntPK();
-        //k.setIsbn(isbn);
-        //k.setIdLecteur(idLecteur);
+        List<Effectuerabonnement> abonnementsLecteurList = effectuerAbonnement.findAllFor(idLecteur);
 
         String format = "yyyy/MM/dd";
 
         SimpleDateFormat formater = new SimpleDateFormat(format);
-        //String dateTexte = " "; //venant de la vue si recuperé en string
-        //Date date3 = null;
-        //try {
-        //     date3 = formater.parse(dateTexte);
-        //} catch (ParseException ex) {
-        //      Logger.getLogger(LecteurFacade.class.getName()).log(Level.SEVERE, null, ex);
-        //}
 
         Date date1 = new Date(); // Date d'Emprunt
 
-        Date date2 = new Date(); // Date retout théorique
+        Date date2 = null; // Date retout théorique
 
-        int annee = date1.getYear();
-        int mois = date1.getMonth();
-        int jour = date1.getDate();
-
-        if (mois == 9 || mois == 7 || mois == 6 || mois == 4 || mois == 2 || mois == 0) {
-
-            if (jour < 25) {
-                jour = jour + 7;
-            } else {
-                switch (jour) {
-                    case 25:
-                        jour = 01;
-                        mois++;
-                        break;
-                    case 26:
-                        jour = 02;
-                        mois++;
-                        break;
-                    case 27:
-                        jour = 03;
-                        mois++;
-                        break;
-                    case 28:
-                        jour = 04;
-                        mois++;
-                        break;
-                    case 29:
-                        jour = 05;
-                        mois++;
-                        break;
-                    case 30:
-                        jour = 06;
-                        mois++;
-                        break;
-                    case 31:
-                        jour = 07;
-                        mois++;
-                        break;
-                    default:
-                        break;
-                }
-
+        //Si un lecteur a souscrit à plusieurs abonnements, la date de retour sera celle de l'abonnement le plus grand
+        if (abonnementsLecteurList.size() > 0){
+            if (abonnementsLecteurList.size() == 1){
+                date2 = abonnementsLecteurList.get(0).getDateFinAbonnement();
+            }else{
+                abonnementsLecteurList.sort((dat1, dat2) -> dat1.getDateFinAbonnement().compareTo(dat2.getDateFinAbonnement()));
+                date2 = abonnementsLecteurList.get(abonnementsLecteurList.size()-1).getDateFinAbonnement();
             }
-            date2 = new Date(annee, mois, jour);
-        }
-
-        if (mois == 10 || mois == 8 || mois == 5 || mois == 3) {//mois de 30 jours
-
-            if (jour < 24) {
-                jour = jour + 7;
+            if(date2.compareTo(date1) > 0 || date2.compareTo(date1) == 0) {
+                Emprunt e = new Emprunt(isbn, idLecteur, date1);
+                e.setNbrAvertissement(0);
+                e.setDateRetourTheo(date2);
+                empruntRepository.save(e);
+                return ResponseEntity.ok("Le livre ayant pour code ISBN "+isbn+" a été emprunté avec succès; vous devez le remettre le: "+date2);
             } else {
-                switch (jour) {
-                    case 24:
-                        jour = 01;
-                        mois++;
-                        break;
-                    case 25:
-                        jour = 02;
-                        mois++;
-                        break;
-                    case 26:
-                        jour = 03;
-                        mois++;
-                        break;
-                    case 27:
-                        jour = 04;
-                        mois++;
-                        break;
-                    case 28:
-                        jour = 05;
-                        mois++;
-                        break;
-                    case 29:
-                        jour = 06;
-                        mois++;
-                        break;
-                    case 30:
-                        jour = 07;
-                        mois++;
-                        break;
-                    default:
-                        break;
-                }
+                return ResponseEntity.ok("Votre abonnement est fini veuillez renouveler");
             }
-            date2 = new Date(annee, mois, jour);
+        }{
+            return ResponseEntity.ok("Vous devez prendre un abonnement");
         }
-        if (mois == 11) { //Decembre
-
-            if (jour < 25) {
-                jour = jour + 7;
-            } else {
-                switch (jour) {
-                    case 25:
-                        jour = 01;
-                        mois = 0;
-                        annee++;
-                        break;
-                    case 26:
-                        jour = 02;
-                        mois = 0;
-                        annee++;
-                        break;
-                    case 27:
-                        jour = 03;
-                        mois = 0;
-                        annee++;
-                        break;
-                    case 28:
-                        jour = 04;
-                        mois = 0;
-                        annee++;
-                        break;
-                    case 29:
-                        jour = 05;
-                        mois = 0;
-                        annee++;
-                        break;
-                    case 30:
-                        jour = 06;
-                        mois = 0;
-                        annee++;
-                        break;
-                    case 31:
-                        jour = 07;
-                        mois = 0;
-                        annee++;
-                        break;
-                    default:
-                        break;
-                }
-            }
-            date2 = new Date(annee, mois, jour);
-        }
-        if (mois == 1) {//mois de 30 jours
-
-            if (jour < 22) {
-                jour = jour + 7;
-            } else {
-                switch (jour) {
-                    case 22:
-                        jour = 01;
-                        mois++;
-                        break;
-                    case 23:
-                        jour = 02;
-                        mois++;
-                        break;
-                    case 24:
-                        jour = 03;
-                        mois++;
-                        break;
-                    case 25:
-                        jour = 04;
-                        mois++;
-                        break;
-                    case 26:
-                        jour = 05;
-                        mois++;
-                        break;
-                    case 27:
-                        jour = 06;
-                        mois++;
-                        break;
-                    case 28:
-                        jour = 07;
-                        mois++;
-                        break;
-                    default:
-                        break;
-                }
-            }
-            date2 = new Date(annee, mois, jour);
-        }
-        int avert = 0;//venant de la vue
-
-        Emprunt e = new Emprunt(isbn, idLecteur, date1);
-
-        e.setDateRetourTheo(date2);
-//         e.setDateEmprunt(date3);
-        e.setNbrAvertissement(avert);
-
-        //getEntityManager().persist(e);
-        empruntRepository.save(e);
     }
 
     @Override

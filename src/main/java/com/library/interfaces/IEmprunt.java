@@ -2,6 +2,7 @@ package com.library.interfaces;
 
 import com.library.entities.Emprunt;
 import com.library.entities.EmpruntPK;
+import org.springframework.http.ResponseEntity;
 
 import java.util.Date;
 import java.util.List;
@@ -15,7 +16,7 @@ public interface IEmprunt {
 
     void remove(Emprunt emprunt);
 
-    void emprunterLivre(int isbn, int idLecteur);
+    ResponseEntity<String> emprunterLivre(int isbn, int idLecteur);
 
     Emprunt find(int isbn, int idLecteur, Date dateEmprunt);
 

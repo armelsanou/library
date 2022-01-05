@@ -5,6 +5,7 @@ import com.library.entities.Emprunt;
 import com.library.implementations.EmpruntImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.text.SimpleDateFormat;
@@ -19,13 +20,13 @@ public class EmpruntController {
     EmpruntImpl empruntService;
 
     @PostMapping("/api/emprunt")
-    public void emprunterLivre(@RequestBody ObjectNode objectNode) throws Exception{
+    public ResponseEntity<String> emprunterLivre(@RequestBody ObjectNode objectNode) throws Exception{
 
         int isbn = Integer.parseInt(objectNode.get("isbn").asText());
 
         int idLecteur = Integer.parseInt(objectNode.get("idLecteur").asText());
 
-        empruntService.emprunterLivre(isbn,idLecteur);
+        return empruntService.emprunterLivre(isbn,idLecteur);
     }
 
     @RequestMapping(value = "/api/emprunts", method = RequestMethod.GET)

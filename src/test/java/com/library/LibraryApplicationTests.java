@@ -20,7 +20,8 @@ class LibraryApplicationTests {
 		System.out.println("started test");
 		//effectuerAbonnementService.sAbonner(1,2);
 		//empruntService.emprunterLivre(1111,2);
-		empruntService.nonRemis(1111,2);
+		//empruntService.nonRemis(1111,2);
+		empruntService.emprunterLivre(1111,5);
 	}
 
 }
