@@ -183,7 +183,7 @@ public class Livre implements Serializable {
         return true;
     }
 
-    @Override
+    /*@Override
     public String toString() {
         return "Livre{" +
                 "isbn=" + isbn +
@@ -196,5 +196,5 @@ public class Livre implements Serializable {
                 ", idEtatLivre=" + idEtatLivre +
                 ", idCategorie=" + idCategorie +
                 '}';
-    }
+    }*/
 }

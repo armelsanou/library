@@ -30,6 +30,6 @@ public interface IEmprunt {
 
     List<Emprunt> findAll();
 
-    void avertirLecteur(int isbn, int idLecteur, Date dateEmprunt);
+    Emprunt avertirLecteur(int isbn, int idLecteur, Date dateEmprunt);
 
 }

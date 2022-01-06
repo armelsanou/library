@@ -114,11 +114,10 @@ public class EmpruntImpl implements IEmprunt {
     }
 
     @Override
-    public void avertirLecteur(int isbn, int idLecteur, Date dateEmprunt) {
+    public Emprunt avertirLecteur(int isbn, int idLecteur, Date dateEmprunt) {
         Emprunt emprunt = (Emprunt) this.find(isbn, idLecteur,dateEmprunt);
-        System.out.println("foud"+emprunt);
         emprunt.setNbrAvertissement(emprunt.getNbrAvertissement()+1);
-        empruntRepository.save(emprunt);
+        return empruntRepository.save(emprunt);
     }
 
     @Override

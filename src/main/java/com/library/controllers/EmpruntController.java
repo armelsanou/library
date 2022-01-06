@@ -36,9 +36,8 @@ public class EmpruntController {
     }
 
     @PatchMapping("/api/emprunt/avertir")
-    public void avertirLecteur(@RequestBody ObjectNode objectNode) throws Exception{
+    public Emprunt avertirLecteur(@RequestBody ObjectNode objectNode) throws Exception{
 
-        System.out.println("given"+ objectNode);
         int isbn = Integer.parseInt(objectNode.get("isbn").asText());
 
         int idLecteur = Integer.parseInt(objectNode.get("idLecteur").asText());
@@ -47,6 +46,6 @@ public class EmpruntController {
 
         Date empruntDate = new SimpleDateFormat("yyyy-MM-dd").parse(dateEmprunt);
 
-        empruntService.avertirLecteur(isbn,idLecteur,empruntDate);
+        return empruntService.avertirLecteur(isbn,idLecteur,empruntDate);
     }
 }

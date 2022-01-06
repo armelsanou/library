@@ -67,7 +67,7 @@ public class Lecteur implements Serializable {
     private String role = "lecteur";
     @Size(max = 255)
     @Column(length = 255)
-    private String photo;
+    private String image;
 
     public Lecteur() {
     }
@@ -158,12 +158,12 @@ public class Lecteur implements Serializable {
         this.role = role;
     }
 
-    public String getPhoto() {
-        return photo;
+    public String getImage() {
+        return image;
     }
 
-    public void setPhoto(String photo) {
-        this.photo = photo;
+    public void setImage(String image) {
+        this.image = image;
     }
 
     @XmlTransient

@@ -35,6 +35,8 @@ public class Categorie implements Serializable {
     @Size(max = 255)
     @Column(length = 255)
     private String libelle;
+    @Column(length = 255)
+    private String image;
     @OneToMany(mappedBy = "idCategorie",fetch= FetchType.LAZY)
     @JsonIgnoreProperties("idCategorie")
     private List<Rayon> rayonList;
@@ -63,6 +65,14 @@ public class Categorie implements Serializable {
 
     public void setLibelle(String libelle) {
         this.libelle = libelle;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
     }
 
     @XmlTransient
@@ -108,6 +118,7 @@ public class Categorie implements Serializable {
         return "Categorie{" +
                 "idCategorie=" + idCategorie +
                 ", libelle='" + libelle + '\'' +
+                ", image='" + image + '\'' +
                 ", rayonList=" + rayonList +
                 ", livreList=" + livreList +
                 '}';

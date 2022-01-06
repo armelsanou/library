@@ -144,7 +144,7 @@ public class Emprunt implements Serializable {
         return true;
     }
 
-    @Override
+    /*@Override
     public String toString() {
         return "Emprunt{" +
                 "empruntPK=" + empruntPK +
@@ -154,5 +154,5 @@ public class Emprunt implements Serializable {
                 ", livre=" + livre +
                 ", lecteur=" + lecteur +
                 '}';
-    }
+    }*/
 }
