@@ -182,19 +182,4 @@ public class Livre implements Serializable {
         }
         return true;
     }
-
-    /*@Override
-    public String toString() {
-        return "Livre{" +
-                "isbn=" + isbn +
-                ", titre='" + titre + '\'' +
-                ", dateEdition=" + dateEdition +
-                ", auteur='" + auteur + '\'' +
-                ", image='" + image + '\'' +
-                ", description='" + description + '\'' +
-                ", empruntList=" + empruntList +
-                ", idEtatLivre=" + idEtatLivre +
-                ", idCategorie=" + idCategorie +
-                '}';
-    }*/
 }

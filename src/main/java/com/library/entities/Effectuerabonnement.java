@@ -23,7 +23,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
- * @author LoicoSquare DeMadrid
+ * @author Armel Sanou
  */
 @Entity
 @Table(catalog = "library", schema = "")
@@ -117,10 +117,5 @@ public class Effectuerabonnement implements Serializable {
             return false;
         }
         return true;
-    }
-
-    @Override
-    public String toString() {
-        return "controller.exceptions.Effectuerabonnement[ effectuerabonnementPK=" + effectuerabonnementPK + " ]";
     }
 }

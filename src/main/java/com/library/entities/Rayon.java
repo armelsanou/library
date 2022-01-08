@@ -25,7 +25,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
- * @author LoicoSquare DeMadrid
+ * @author Armel Sanou
  */
 @Entity
 @Table(catalog = "library", schema = "")
@@ -98,14 +98,5 @@ public class Rayon implements Serializable {
             return false;
         }
         return true;
-    }
-
-    @Override
-    public String toString() {
-        return "Rayon{" +
-                "idRayon=" + idRayon +
-                ", libelle='" + libelle + '\'' +
-                ", idCategorie=" + idCategorie +
-                '}';
     }
 }

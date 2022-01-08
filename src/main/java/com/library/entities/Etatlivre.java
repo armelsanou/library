@@ -16,7 +16,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author LoicoSquare DeMadrid
+ * @author Armel Sanou
  */
 @Entity
 @Table(catalog = "library", schema = "")
@@ -89,14 +89,5 @@ public class Etatlivre implements Serializable {
             return false;
         }
         return true;
-    }
-
-    @Override
-    public String toString() {
-        return "Etatlivre{" +
-                "idEtatLivre=" + idEtatLivre +
-                ", etat='" + etat + '\'' +
-                ", livreList=" + livreList +
-                '}';
     }
 }

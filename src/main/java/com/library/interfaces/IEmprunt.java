@@ -4,9 +4,9 @@ import com.library.entities.Emprunt;
 import com.library.entities.EmpruntPK;
 import org.springframework.http.ResponseEntity;
 
+import java.text.ParseException;
 import java.util.Date;
 import java.util.List;
-import java.util.Optional;
 
 public interface IEmprunt {
 
@@ -16,7 +16,7 @@ public interface IEmprunt {
 
     void remove(Emprunt emprunt);
 
-    ResponseEntity<String> emprunterLivre(int isbn, int idLecteur);
+    ResponseEntity<Emprunt> emprunterLivre(int isbn, int idLecteur);
 
     Emprunt find(int isbn, int idLecteur, Date dateEmprunt);
 
@@ -31,5 +31,7 @@ public interface IEmprunt {
     List<Emprunt> findAll();
 
     Emprunt avertirLecteur(int isbn, int idLecteur, Date dateEmprunt);
+
+    Emprunt remettreLivre(int isbn, int idLecteur, Date dateEmprunt) throws ParseException;
 
 }

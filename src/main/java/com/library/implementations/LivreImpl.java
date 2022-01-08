@@ -1,5 +1,7 @@
 package com.library.implementations;
 
+import com.library.entities.Categorie;
+import com.library.entities.Emprunt;
 import com.library.entities.Livre;
 import com.library.interfaces.ILivre;
 import com.library.repositories.LivreRepository;
@@ -51,7 +53,14 @@ public class LivreImpl implements ILivre {
     }
 
     @Override
-    public List<Livre> findAllLivreByCategorie(int idCategorie) {
+    public List<Livre> findAllLivresNonEmpruntes() {
+        Query query = getEntityManager().createQuery("SELECT l FROM Livre l WHERE l.isbn NOT IN (SELECT e.empruntPK.isbn FROM Emprunt e) OR l.isbn IN (SELECT e.empruntPK.isbn FROM Emprunt e WHERE e.dateRetourEff IS NOT NULL)");
+        return (List<Livre>) query.getResultList();
+    }
+
+    @Override
+    public List<Livre> findAllLivreByCategorie(Categorie idCategorie) {
+        System.out.println("id "+idCategorie);
         try {
             Query query = getEntityManager().createNamedQuery("Livre.findLivreByCategorie")
                     .setParameter("idCategorie", idCategorie);

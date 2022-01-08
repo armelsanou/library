@@ -16,7 +16,7 @@ import javax.validation.constraints.NotNull;
 
 /**
  *
- * @author LoicoSquare DeMadrid
+ * @author Armel Sanou
  */
 @Embeddable
 public class EffectuerabonnementPK implements Serializable {
@@ -93,10 +93,5 @@ public class EffectuerabonnementPK implements Serializable {
             return false;
         }
         return true;
-    }
-
-    @Override
-    public String toString() {
-        return "controller.exceptions.EffectuerabonnementPK[ idLecteur=" + idLecteur + ", idAbonnement=" + idAbonnement + ", dateAbonnement=" + dateDebutAbonnement + " ]";
     }
 }

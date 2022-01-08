@@ -15,7 +15,7 @@ import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 /**
  *
- * @author LoicoSquare DeMadrid
+ * @author Armel Sanou
  */
 @Embeddable
 public class EmpruntPK implements Serializable {
@@ -92,11 +92,6 @@ public class EmpruntPK implements Serializable {
             return false;
         }
         return true;
-    }
-
-    @Override
-    public String toString() {
-        return "controller.EmpruntPK[ isbn=" + isbn + ", idLecteur=" + idLecteur + ", dateEmprunt=" + dateEmprunt + " ]";
     }
     
 }

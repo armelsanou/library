@@ -20,7 +20,7 @@ public class EmpruntController {
     EmpruntImpl empruntService;
 
     @PostMapping("/api/emprunt")
-    public ResponseEntity<String> emprunterLivre(@RequestBody ObjectNode objectNode) throws Exception{
+    public ResponseEntity<Emprunt> emprunterLivre(@RequestBody ObjectNode objectNode) throws Exception{
 
         int isbn = Integer.parseInt(objectNode.get("isbn").asText());
 
@@ -47,5 +47,19 @@ public class EmpruntController {
         Date empruntDate = new SimpleDateFormat("yyyy-MM-dd").parse(dateEmprunt);
 
         return empruntService.avertirLecteur(isbn,idLecteur,empruntDate);
+    }
+
+    @PatchMapping("/api/emprunt/remettre")
+    public Emprunt remettreLivre(@RequestBody ObjectNode objectNode) throws Exception{
+
+        int isbn = Integer.parseInt(objectNode.get("isbn").asText());
+
+        int idLecteur = Integer.parseInt(objectNode.get("idLecteur").asText());
+
+        String dateEmprunt = String.valueOf((objectNode.get("dateEmprunt").asText()));
+
+        Date empruntDate = new SimpleDateFormat("yyyy-MM-dd").parse(dateEmprunt);
+
+        return empruntService.remettreLivre(isbn,idLecteur,empruntDate);
     }
 }

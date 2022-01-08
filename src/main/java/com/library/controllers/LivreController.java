@@ -1,5 +1,6 @@
 package com.library.controllers;
 
+import com.library.entities.Categorie;
 import com.library.entities.Livre;
 import com.library.implementations.LivreImpl;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -45,8 +46,14 @@ public class LivreController {
         return livreService.findAllLivres();
     }
 
+    @RequestMapping(value = "/api/livres-disponibles", method = RequestMethod.GET)
+    @ResponseStatus(HttpStatus.OK)
+    @ResponseBody public List<Livre> findAllLivresNonEmpruntes() {
+        return livreService.findAllLivresNonEmpruntes();
+    }
+
     @GetMapping("/api/livres/categorie/{id}")
-    public List<Livre> findAllLivreByCategorie(@PathVariable(value = "id") int id){
+    public List<Livre> findAllLivreByCategorie(@PathVariable(value = "id") Categorie id){
         return livreService.findAllLivreByCategorie(id);
     }
 }

@@ -22,7 +22,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
- * @author LoicoSquare DeMadrid
+ * @author Armel Sanou
  */
 @Entity
 @Table(catalog = "library", schema = "")
@@ -143,16 +143,4 @@ public class Emprunt implements Serializable {
         }
         return true;
     }
-
-    /*@Override
-    public String toString() {
-        return "Emprunt{" +
-                "empruntPK=" + empruntPK +
-                ", dateRetourTheo=" + dateRetourTheo +
-                ", dateRetourEff=" + dateRetourEff +
-                ", nbrAvertissement=" + nbrAvertissement +
-                ", livre=" + livre +
-                ", lecteur=" + lecteur +
-                '}';
-    }*/
 }

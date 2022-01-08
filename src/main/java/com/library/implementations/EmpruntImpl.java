@@ -3,12 +3,8 @@ package com.library.implementations;
 import com.library.entities.Effectuerabonnement;
 import com.library.entities.Emprunt;
 import com.library.entities.EmpruntPK;
-import com.library.entities.Rayon;
 import com.library.interfaces.IEmprunt;
-import com.library.interfaces.IRayon;
 import com.library.repositories.EmpruntRepository;
-import com.library.repositories.EtatlivreRepository;
-import com.library.repositories.RayonRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -16,10 +12,11 @@ import org.springframework.stereotype.Service;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class EmpruntImpl implements IEmprunt {
@@ -55,7 +52,7 @@ public class EmpruntImpl implements IEmprunt {
     }
 
     @Override
-    public ResponseEntity<String> emprunterLivre(int isbn, int idLecteur) {
+    public ResponseEntity<Emprunt> emprunterLivre(int isbn, int idLecteur) {
 
         List<Effectuerabonnement> abonnementsLecteurList = effectuerAbonnement.findAllFor(idLecteur);
 
@@ -79,13 +76,15 @@ public class EmpruntImpl implements IEmprunt {
                 Emprunt e = new Emprunt(isbn, idLecteur, date1);
                 e.setNbrAvertissement(0);
                 e.setDateRetourTheo(date2);
-                empruntRepository.save(e);
-                return ResponseEntity.ok("Le livre ayant pour code ISBN "+isbn+" a été emprunté avec succès; vous devez le remettre le: "+date2);
+                return ResponseEntity.ok(empruntRepository.save(e));
+                //return ResponseEntity.ok("Le livre ayant pour code ISBN "+isbn+" a été emprunté avec succès; vous devez le remettre le: "+date2);
             } else {
-                return ResponseEntity.ok("Votre abonnement est fini veuillez renouveler");
+                //return ResponseEntity.ok("Votre abonnement est fini veuillez renouveler");
+                return ResponseEntity.ok(null);
             }
         }{
-            return ResponseEntity.ok("Vous devez prendre un abonnement");
+            //return ResponseEntity.ok("Vous devez prendre un abonnement");
+            return ResponseEntity.ok(null);
         }
     }
 
@@ -117,6 +116,19 @@ public class EmpruntImpl implements IEmprunt {
     public Emprunt avertirLecteur(int isbn, int idLecteur, Date dateEmprunt) {
         Emprunt emprunt = (Emprunt) this.find(isbn, idLecteur,dateEmprunt);
         emprunt.setNbrAvertissement(emprunt.getNbrAvertissement()+1);
+        return empruntRepository.save(emprunt);
+    }
+
+    @Override
+    public Emprunt remettreLivre(int isbn, int idLecteur, Date dateEmprunt) throws ParseException {
+        Emprunt emprunt = (Emprunt) this.find(isbn, idLecteur,dateEmprunt);
+
+        LocalDate date1 = LocalDate.now(); //Date retour
+
+        Date dateRetourEff = new SimpleDateFormat("yyyy-MM-dd").parse(String.valueOf(date1));
+
+        emprunt.setDateRetourEff(dateRetourEff);
+
         return empruntRepository.save(emprunt);
     }
 

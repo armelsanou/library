@@ -16,7 +16,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author LoicoSquare DeMadrid
+ * @author Armel Sanou
  */
 @Entity
 @Table(catalog = "library", schema = "")
@@ -125,17 +125,5 @@ public class Abonnement implements Serializable {
             return false;
         }
         return true;
-    }
-
-    @Override
-    public String toString() {
-        return "Abonnement{" +
-                "idAbonnement=" + idAbonnement +
-                ", libelle='" + libelle + '\'' +
-                ", periode='" + periode + '\'' +
-                ", prix=" + prix +
-                ", description='" + description + '\'' +
-                ", effectuerabonnementList=" + effectuerabonnementList +
-                '}';
     }
 }

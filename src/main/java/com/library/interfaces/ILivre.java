@@ -18,6 +18,8 @@ public interface ILivre {
 
     List<Livre> findAllLivres();
 
-    List<Livre> findAllLivreByCategorie(int idCategorie);
+    List<Livre> findAllLivresNonEmpruntes();
+
+    List<Livre> findAllLivreByCategorie(Categorie idCategorie);
 
 }

@@ -16,7 +16,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author LoicoSquare DeMadrid
+ * @author Armel Sanou
  */
 @Entity
 @Table(catalog = "library", schema = "")
@@ -202,21 +202,5 @@ public class Lecteur implements Serializable {
             return false;
         }
         return true;
-    }
-
-    @Override
-    public String toString() {
-        return "Lecteur{" +
-                "idLecteur=" + idLecteur +
-                ", nom='" + nom + '\'' +
-                ", prenom='" + prenom + '\'' +
-                ", email='" + email + '\'' +
-                ", login='" + login + '\'' +
-                ", mdp='" + mdp + '\'' +
-                ", telephone='" + telephone + '\'' +
-                ", empruntList=" + empruntList +
-                ", effectuerabonnementList=" + effectuerabonnementList +
-                ", role='" + role + '\'' +
-                '}';
     }
 }
