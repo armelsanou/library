@@ -30,7 +30,8 @@ public class LibraryApplication{
 			@Override
 			public void addCorsMappings(CorsRegistry registry) {
 				registry.addMapping("/api/**")
-						.allowedOrigins("http://localhost:4200")
+						.allowedOrigins("*")
+						.allowedHeaders("*")
 						.allowedMethods("GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS")
 						.exposedHeaders("Authorization");
 			}
