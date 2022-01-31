@@ -14,6 +14,9 @@ After opening, you can change the port into file application.properties
 Launching
 Launch the main program: https://github.com/armelsanou/library/blob/main/src/main/java/com/library/LibraryApplication.java
 
+After running, open your browser and navigate to: http://localhost:8081 your can change the port into this config file
+https://github.com/armelsanou/library/blob/main/src/main/resources/application.properties
+
 To get uploaded a file into server: http://localhost:8081/downloadFile/fileName.extension
 
 To get upload a file into server: http://localhost:8081/uploadFile/ then add requestParam named file
