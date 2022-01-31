@@ -17,6 +17,10 @@ Launch the main program: https://github.com/armelsanou/library/blob/main/src/mai
 After running, open your browser and navigate to: http://localhost:8081 your can change the port into this config file
 https://github.com/armelsanou/library/blob/main/src/main/resources/application.properties
 
+To get prepared data, you can import this https://github.com/armelsanou/library/blob/main/library.sql sql script for database, or you can directly create your own data because database is autaumatically generated
+
+signIn as admin with admin@admin.com (this is admin) as login and admin as password or armel@sanou.com as login and armel as password (this is as simple user)
+
 To get uploaded a file into server: http://localhost:8081/downloadFile/fileName.extension
 
 To get upload a file into server: http://localhost:8081/uploadFile/ then add requestParam named file
